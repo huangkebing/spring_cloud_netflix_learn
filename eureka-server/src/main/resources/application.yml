@@ -7,11 +7,17 @@ spring:
 
 # eureka server 配置
 eureka:
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 5
   client:
-    #是否将自己注册到注册中心
-    registerWithEureka: false
-    #是否从EurekaServer 获取注册信息
-    fetchRegistry: false
-    #设置与eureka交互的地址
-    serviceUrl:
+    healthcheck:
+      enabled: true
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
       defaultZone: http://localhost:8761/eureka/
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 10000
