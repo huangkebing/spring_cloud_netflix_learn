@@ -10,6 +10,7 @@
     <description>spring_cloud_learn</description>
     <modules>
         <module>eureka-server</module>
+        <module>server-provider</module>
     </modules>
 
     <properties>
