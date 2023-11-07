@@ -1,6 +1,7 @@
 package com.kebing.server.consumer.web;
 
 import com.kebing.server.consumer.entity.Record;
+import com.kebing.server.consumer.feign.RecordFeignClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.client.ServiceInstance;
@@ -14,17 +15,18 @@ import org.springframework.web.client.RestTemplate;
 public class DealRecordController {
     protected static Logger log = LoggerFactory.getLogger(DealRecordController.class);
 
-    private final RestTemplate restTemplate;
     private final LoadBalancerClient loadBalancerClient;
 
-    public DealRecordController(RestTemplate restTemplate, LoadBalancerClient loadBalancerClient) {
-        this.restTemplate = restTemplate;
+    private final RecordFeignClient recordFeignClient;
+
+    public DealRecordController(LoadBalancerClient loadBalancerClient, RecordFeignClient recordFeignClient) {
         this.loadBalancerClient = loadBalancerClient;
+        this.recordFeignClient = recordFeignClient;
     }
 
     @RequestMapping("/deal/record/{rid}")
     public Object dealRecord(@PathVariable String rid){
-        return restTemplate.getForObject("http://user-provider/record/" + rid, Record.class);
+        return recordFeignClient.getRecord(rid);
     }
 
     @RequestMapping("/logUserInstance")

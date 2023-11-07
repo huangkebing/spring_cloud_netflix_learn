@@ -11,3 +11,6 @@ server:
   port: 8763
 ribbon:
   NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+feign:
+  hystrix:
+    enabled: true
