@@ -2,7 +2,9 @@ package com.kebing.server.consumer.feign.fallback;
 
 import com.kebing.server.consumer.entity.Record;
 import com.kebing.server.consumer.feign.RecordFeignClient;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RecordFeignClientFallback implements RecordFeignClient {
     @Override
     public Record getRecord(String rid) {

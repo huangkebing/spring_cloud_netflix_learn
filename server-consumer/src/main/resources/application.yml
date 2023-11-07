@@ -12,5 +12,5 @@ server:
 ribbon:
   NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
 feign:
-  hystrix:
+  circuitbreaker:
     enabled: true
